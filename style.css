@@ -80,14 +80,26 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+    cursor: pointer;
 } 
 
 /** SYMBOLS/MARKERS **/
 /* Markers are designed purely in CSS as opposed to text in HTML. 
 With the text approach, you'd have to worry about font sizes and the symbols will depend on the font that you use. It's going to be hard to center. A third approach that avoids this complication is to simply use icons. */
 
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+
+/* Hover effect vis-a-vis gameboard state ('x' or 'circle''s turn) */
+/* (Psst, most complex part of the CSS) */ 
+ 
+
 .cell.x::before,
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:hover::before,
+.board.x .cell:hover::after {
     content: ''; 
     position: absolute;
     width: calc(var(--mark-size) * 0.15);
@@ -95,11 +107,13 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     background-color: black;
 }  
  
-.cell.x::before {
+.cell.x::before, 
+.board.x .cell:hover::before {
     transform: rotate(45deg);
 }
 
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:hover::after {
     transform: rotate(-45deg);
 }
 
