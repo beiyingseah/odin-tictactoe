@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="images/tic-tac-toe-hand-drawn-game.png">
+        <script src="main.js" defer></script>
+        <title>Tic Tac Toe | The Odin Project</title>
+    </head>
+
+    <body>
+        <button type="button" class="new-game-btn">Play Again</button>
+        <div id="scoreBoard">
+            <span id="PlayerXName">[PlayerX's name]
+                <span id="PlayerXScore">0</span>
+            </span>
+            <span id="PlayerOName">[PlayerO's name]
+                <span id="PlayerOScore">0</span>
+            </span>
+        </div>
+
+        <div class="board" id="board">
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+        </div>
+
+        <div class="modal" id="modalResultMessage">
+            <div data-winning-message-text></div>
+            <div horizontal-container>
+                <button type="button" class="new-game-btn">New Game</button>
+                <button type="button" class="play-again-btn">Play Again</button>
+            </div>
+        </div>
+        
+    </body>
+    
+    <footer class='footer'>
+        <p>Copyright © 2022 beiyingseah&nbsp</p>
+        <a href='https://github.com/beiyingseah'>
+          <img src='images/GitHub-Mark-Dark_32px.png' alt='Github icon, a feline-cephalopod hybrid, known as Octocat.' width='20' height='20'> 
+        </a>
+    </footer>
+
+</html>

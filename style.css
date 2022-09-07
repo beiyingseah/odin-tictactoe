@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800&display=swap');
+
+/*** BASE ELEMENTS ***/
+
+:root {
+    --fnt-fm-default: 'Nunito Sans', sans-serif, Arial;
+
+    /* Colour palette: font, cells, board */
+    --clr-green: #55EFC4;
+    --clr-white: #fdfffc;
+    --clr-dark-grey: #6c757d;
+    --clr-medium-grey: #adb5bd;
+    --clr-light-grey: ##e8e8e8;
+    
+    /* Neumorphic accents: background & shadows */
+    --neu-bg-default: linear-gradient(145deg, #d1d1d1, #f8f8f8);
+    --neu-bg-down: #e8e8e8;
+    --neu-bg-up: linear-gradient(145deg, #f8f8f8, #d1d1d1);
+    --neu-shadow-default: 1rem 1rem 2rem #b7b7b7, -1rem -1rem 2rem #ffffff;
+    --neu-shadow-down: inset 1rem 1rem 2rem #b7b7b7,
+        inset -1rem -1rem 2rem #ffffff;
+
+    --clr-text-default: var(--clr-dark-grey);
+    --clr-main-header-text: var(--clr-white);
+    --clr-footer-text: var(--clr-dark-grey);
+    --modal-bg-colour: var(--clr-white);
+
+    /* Element sizes */
+    font-size: 18px;
+    --board-cell-size: 10rem; 
+    --symbol-size: calc(var(--board-cell-size) * 0.8); /* CSS function: calc() */
+ 
+    /* Font sizes & boldness for different headings */
+    --fnt-sz-main-header: 4rem;
+    --fnt-sz-text-default: 1.6rem;
+    --fnt-sz-footer-text: 1rem;
+    --fnt-sz-scores-text: 2.5rem;
+    --fnt-sz-settings-title: 2.5rem;
+    --fnt-sz-winner-text: 5rem;
+    --fnt-wt-300: 300;
+    --fnt-wt-400: 400;
+    --fnt-wt-700: 700;
+}
+
+/* Setting up some basic box-sizing */
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    /* Remove HTML's default styling  (CSS reset) */
+    min-height: 100vh;
+    margin: 0;
+    background: var(--neu-bg-default);
+    box-shadow: var(--neu-shadow-default);
+    font-family: var(--fnt-fm-default);
+    font-size: var(--fnt-sz-text-default);
+    color: var(--clr-text-default);
+}
+
+/*** GAMEBOARD ***/
+.board { 
+    display: grid;
+    justify-content: center; 
+    align-content: center;
+    grid-template-columns: repeat(3, auto);
+    background-color: pink;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    border: 1px solid white;
+}
+
+
+/*** FOOTER ***/
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: var(--fnt-sz-footer-text);
+    color: var(--clr-footer-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
