@@ -5,6 +5,7 @@
 #### SOME KEY LEARNINGS I APPLIED FROM TOP
 - CSS variables (or custom properties), namely :root Selector
 - CSS function, namely: calc() under :root selector
+- Using CSS positioning, namely, 'absolute' and 'relative' positionings to manipulate the design of 'X' and 'o' markers
 
 ## TODOs
 ### Key functionalities

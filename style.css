@@ -79,6 +79,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 } 
 
 /** SYMBOLS/MARKERS **/
@@ -87,7 +88,8 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
 
 .cell.x::before,
 .cell.x::after {
-    content: '';
+    content: ''; 
+    position: absolute;
     width: calc(var(--mark-size) * 0.15);
     height: var(--mark-size);
     background-color: black;
@@ -101,8 +103,28 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     transform: rotate(-45deg);
 }
 
+.cell.circle::before,
+.cell.circle::after {
+    content: ''; 
+    position: absolute;
+    border-radius: 50%;
+}  
+
+.cell.circle::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+    background-color: black;
+}
+
+.cell.circle::after {
+    width: calc(var(--mark-size) * 0.7);
+    height: calc(var(--mark-size) * 0.7);
+    background-color: pink;
+}
+
+
 /*** MODAL ***/ 
-.modal {
+/*.modal {
     position: fixed;
     z-index: 1;
     left:0;
@@ -129,7 +151,7 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     from {opacity: 0}
     to {opacity: 1}
 }
-
+*/
 
 /*** FOOTER ***/
 .footer {
