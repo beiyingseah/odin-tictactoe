@@ -68,37 +68,40 @@ body {
     grid-template-columns: repeat(3, auto);
     justify-items: center;
     align-items: center;
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(243,  243, 243);
 }
 
 .cell {
     width: var(--cell-size);
     height: var(--cell-size);
     border: 1px solid black;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+/** SYMBOLS/MARKERS **/
+/* Markers are designed purely in CSS as opposed to text in HTML. 
+With the text approach, you'd have to worry about font sizes and the symbols will depend on the font that you use. It's going to be hard to center. A third approach that avoids this complication is to simply use icons. */
+
+.cell.x::before,
+.cell.x::after {
+    content: '';
+    width: calc(var(--mark-size) * 0.15);
+    height: var(--mark-size);
+    background-color: black;
+}  
+ 
+.cell.x::before {
+    transform: rotate(45deg);
 }
 
-/* Remove cell's outer borders */
-.cell:first-child,
-.cell:nth-child(2),
-.cell:nth-child(3) {
-    border-top: none;
+.cell.x::after {
+    transform: rotate(-45deg);
 }
 
-.cell:nth-child(3n + 1) {
-    border-left: none;
-}
-
-.cell:nth-child(3n+3) {
-    border-right: none;
-}
-
-.cell:last-child,
-.cell:nth-child(8),
-.cell:nth-child(7) {
-    border-bottom: none;
-}
-
-/*** MODAL ***/
+/*** MODAL ***/ 
 .modal {
     position: fixed;
     z-index: 1;
