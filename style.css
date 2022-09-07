@@ -12,24 +12,25 @@
     --clr-medium-grey: #adb5bd;
     --clr-light-grey: ##e8e8e8;
     
+    /** KIV **/
     /* Neumorphic accents: background & shadows */
-    --neu-bg-default: linear-gradient(145deg, #d1d1d1, #f8f8f8);
+    /* --neu-bg-default: linear-gradient(145deg, #d1d1d1, #f8f8f8);
     --neu-bg-down: #e8e8e8;
     --neu-bg-up: linear-gradient(145deg, #f8f8f8, #d1d1d1);
     --neu-shadow-default: 1rem 1rem 2rem #b7b7b7, -1rem -1rem 2rem #ffffff;
     --neu-shadow-down: inset 1rem 1rem 2rem #b7b7b7,
-        inset -1rem -1rem 2rem #ffffff;
+        inset -1rem -1rem 2rem #ffffff; */
 
     --clr-text-default: var(--clr-dark-grey);
     --clr-main-header-text: var(--clr-white);
     --clr-footer-text: var(--clr-dark-grey);
     --modal-bg-colour: var(--clr-white);
-
+    
     /* Element sizes */
     font-size: 18px;
-    --board-cell-size: 10rem; 
-    --symbol-size: calc(var(--board-cell-size) * 0.8); /* CSS function: calc() */
- 
+    --cell-size: 100px; 
+    --mark-size: calc(var(--cell-size) * 0.9); /* CSS function: calc() */
+
     /* Font sizes & boldness for different headings */
     --fnt-sz-main-header: 4rem;
     --fnt-sz-text-default: 1.6rem;
@@ -40,6 +41,7 @@
     --fnt-wt-300: 300;
     --fnt-wt-400: 400;
     --fnt-wt-700: 700;
+
 }
 
 /* Setting up some basic box-sizing */
@@ -64,14 +66,65 @@ body {
     justify-content: center; 
     align-content: center;
     grid-template-columns: repeat(3, auto);
-    background-color: pink;
+    justify-items: center;
+    align-items: center;
+    background-color: rgb(243, 243, 243);
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
-    background-color: black;
-    border: 1px solid white;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid black;
+}
+
+/* Remove cell's outer borders */
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.cell:nth-child(3n+3) {
+    border-right: none;
+}
+
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
+    border-bottom: none;
+}
+
+/*** MODAL ***/
+.modal {
+    position: fixed;
+    z-index: 1;
+    left:0;
+    top:0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalForm {
+    background-color: #f4f4f4;
+    padding: 20px;
+    max-width: 400px;
+    animation-name: modalopen;
+    animation-duration: 0.3s;
+    border-radius: 10px;
+}
+
+@keyframes modalopen{
+    from {opacity: 0}
+    to {opacity: 1}
 }
 
 
