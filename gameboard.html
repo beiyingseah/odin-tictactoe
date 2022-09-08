@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <button type="button" class="new-game-btn">Play Again</button>
+        <button type="button" class="new-game-btn">New Game</button>
         <div id="scoreBoard">
             <span id="p1ameDisplay">[p1ameDisplay]
                 <span id="p1Score">0</span>
@@ -20,7 +20,7 @@
             </span>
         </div>
 
-        <div class="board circle" id="board">
+        <div class="board x" id="board">
             <div class="cell x" data-cell></div>
             <div class="cell circle" data-cell></div>
             <div class="cell" data-cell></div>
@@ -33,9 +33,8 @@
         </div>
 
         <div class="modal">
-            <form id='modalForm'>
             <div class="modal-content">
-                <p>Hello, I am a modal!</p>
+                <p id="resultMessage">Winning message: Player 1 wins this round!</p>
                 <div class="horizontal-container">
                     <button type="button" class="new-game-btn">New Game</button>
                     <button type="button" class="play-again-btn">Play Again</button>

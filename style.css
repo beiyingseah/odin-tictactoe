@@ -75,7 +75,7 @@ body {
     width: var(--cell-size);
     height: var(--cell-size);
     border: 1px solid black;
-    background-color: pink;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,13 +87,27 @@ body {
 /* Markers are designed purely in CSS as opposed to text in HTML. 
 With the text approach, you'd have to worry about font sizes and the symbols will depend on the font that you use. It's going to be hard to center. A third approach that avoids this complication is to simply use icons. */
 
+/* Hover effect vis-a-vis gameboard state ('x' or 'circle''s turn) */
+/* (Psst, most complex part of the CSS) */ 
+
 .cell.x,
 .cell.circle {
     cursor: not-allowed;
 }
 
-/* Hover effect vis-a-vis gameboard state ('x' or 'circle''s turn) */
-/* (Psst, most complex part of the CSS) */ 
+.cell.x::before,
+.cell.x::after,
+.cell.circle::before,
+.cell.circle::after {
+    background-color: black;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+    background-color: lightgrey;
+}
+
 /* X SYMBOL */
 .cell.x::before,
 .cell.x::after,
@@ -103,7 +117,6 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     position: absolute;
     width: calc(var(--mark-size) * 0.15);
     height: var(--mark-size);
-    background-color: black;
 }  
  
 .cell.x::before, 
@@ -130,19 +143,18 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
 .board.circle .cell:not(.x):not(.circle):hover::before {
     width: var(--mark-size);
     height: var(--mark-size);
-    background-color: black;
 }
 
 .cell.circle::after,
 .board.circle .cell:not(.x):not(.circle):hover::after {
     width: calc(var(--mark-size) * 0.7);
     height: calc(var(--mark-size) * 0.7);
-    background-color: pink;
+    background-color: white;
 }
 
 
 /*** MODAL ***/ 
-/*.modal {
+.modal {
     position: fixed;
     z-index: 1;
     left:0;
@@ -150,14 +162,13 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     height: 100%;
     width: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
     display: none;
-    justify-content: center;
-    align-items: center;
 }
 
-#modalForm {
-    background-color: #f4f4f4;
+.modal-content {
+    margin: 10% auto;
     padding: 20px;
     max-width: 400px;
     animation-name: modalopen;
@@ -165,11 +176,14 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     border-radius: 10px;
 }
 
+#resultMessage {
+    color: white;
+}
+
 @keyframes modalopen{
     from {opacity: 0}
     to {opacity: 1}
 }
-*/
 
 /*** FOOTER ***/
 .footer {
