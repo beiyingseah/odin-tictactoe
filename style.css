@@ -37,7 +37,7 @@
     --fnt-sz-footer-text: 1rem;
     --fnt-sz-scores-text: 2.5rem;
     --fnt-sz-settings-title: 2.5rem;
-    --fnt-sz-winner-text: 5rem;
+    --fnt-sz-result-text: 4rem;
     --fnt-wt-300: 300;
     --fnt-wt-400: 400;
     --fnt-wt-700: 700;
@@ -59,6 +59,12 @@ body {
     font-size: var(--fnt-sz-text-default);
     color: var(--clr-text-default);
 }
+
+/*** BUTTONS ***/
+button {
+    cursor: pointer;
+}
+
 
 /*** GAMEBOARD ***/
 .board { 
@@ -152,7 +158,6 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     background-color: white;
 }
 
-
 /*** MODAL ***/ 
 .modal {
     position: fixed;
@@ -164,13 +169,17 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     overflow: auto;
     background-color: rgba(0,0,0,0.6);
     backdrop-filter: blur(5px);
-    display: none;
+    /*display: none;*/
 }
 
 .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
     margin: 10% auto;
     padding: 20px;
-    max-width: 400px;
+    max-width: fit-content;
     animation-name: modalopen;
     animation-duration: 0.3s;
     border-radius: 10px;
@@ -178,6 +187,12 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
 
 #resultMessage {
     color: white;
+    font-size: var( --fnt-sz-result-text);
+    margin: 0;
+}
+
+.modal-content button {
+    max-width: 100%;
 }
 
 @keyframes modalopen{
