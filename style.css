@@ -65,6 +65,18 @@ button {
     cursor: pointer;
 }
 
+body > .new-game-btn {
+    margin: 20px;
+}
+
+/*** SCOREBOARD ***/
+.scoreBoard {
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+    margin-bottom: 50px;
+}
+
 
 /*** GAMEBOARD ***/
 .board { 
@@ -169,7 +181,7 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     overflow: auto;
     background-color: rgba(0,0,0,0.6);
     backdrop-filter: blur(5px);
-    /*display: none;*/
+    display: none;
 }
 
 .modal-content {

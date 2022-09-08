@@ -11,18 +11,20 @@
 
     <body>
         <button type="button" class="new-game-btn">New Game</button>
-        <div id="scoreBoard">
-            <span id="p1ameDisplay">[p1ameDisplay]
+        <div class="scoreBoard">
+            <span id="p1scoreBoard">
+                <span id="p1Name">[p1Name]</span>
                 <span id="p1Score">0</span>
             </span>
-            <span id="p2NameDisplay">[p2NameDisplay]
+            <span class="p2scoreBoard">
                 <span id="p2Score">0</span>
+                <span id="p2Name">[p2Name]</span>
             </span>
         </div>
 
-        <div class="board x" id="board">
-            <div class="cell x" data-cell></div>
-            <div class="cell circle" data-cell></div>
+        <div class="board" id="board">
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
             <div class="cell" data-cell></div>
             <div class="cell" data-cell></div>
             <div class="cell" data-cell></div>
