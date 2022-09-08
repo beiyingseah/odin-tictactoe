@@ -6,6 +6,7 @@
 - CSS variables (or custom properties), namely :root Selector
 - CSS function, namely: calc() under :root selector
 - Using CSS positioning, namely, 'absolute' and 'relative' positionings to manipulate the design of 'X' and 'o' markers
+- HTML form components & validation
 
 ## TODOs
 ### Key functionalities

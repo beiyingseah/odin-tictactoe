@@ -28,7 +28,7 @@
     
     /* Element sizes */
     font-size: 18px;
-    --cell-size: 100px; 
+    --cell-size: 20vh; 
     --mark-size: calc(var(--cell-size) * 0.9); /* CSS function: calc() */
 
     /* Font sizes & boldness for different headings */
@@ -81,6 +81,7 @@ body > .new-game-btn {
 /*** GAMEBOARD ***/
 .board { 
     display: grid;
+    height: 60%; 
     justify-content: center; 
     align-content: center;
     grid-template-columns: repeat(3, auto);
@@ -181,7 +182,7 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     overflow: auto;
     background-color: rgba(0,0,0,0.6);
     backdrop-filter: blur(5px);
-    display: none;
+    display:none;
 }
 
 .modal-content {
@@ -190,7 +191,6 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     justify-content: center;
     align-content: center;
     margin: 10% auto;
-    padding: 20px;
     max-width: fit-content;
     animation-name: modalopen;
     animation-duration: 0.3s;
