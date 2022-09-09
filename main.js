@@ -14,8 +14,6 @@ const WINNING_COMBINATIONS = [
 ];
 // initialise scoreboard
 const SCOREBOARD = {};
-SCOREBOARD[X_CLASS] = 0;
-SCOREBOARD[CIRCLE_CLASS] = 0;
 
 // Globa l boolean variables
 // Player turn? X or O? 1 or 0?
@@ -36,6 +34,7 @@ const playAgainBtn = document.getElementById('playAgainBtn');
 for (newGameBtn of newGameBtnCollection) {
     newGameBtn.onclick = () => newGame();
 }
+
 playAgainBtn.onclick = () => {
     console.log("playAgainBtn clicked");
     closeModal();
@@ -48,8 +47,9 @@ function newGame() {
     console.log('clearboard');
     clearGameboard();
     console.log('clearScoreboard');
-    clearScoreboard();
+    resetScoreboard();
     console.log('Directed to setup.html');
+    window.location='/index.html';
 }
 
 function clearGameboard() {
@@ -66,7 +66,9 @@ function updateScoreboard() {
     circleScore.textContent = SCOREBOARD[CIRCLE_CLASS];
 } 
 
-function clearScoreboard() {
+function resetScoreboard() {
+    SCOREBOARD[X_CLASS] = 0;
+    SCOREBOARD[CIRCLE_CLASS] = 0;
 }
 
 function startGame() {

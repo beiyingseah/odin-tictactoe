@@ -27,14 +27,14 @@
     --modal-bg-colour: var(--clr-white);
     
     /* Element sizes */
-    font-size: 18px;
+    font-size: 16px;
     --cell-size: 15vh; 
     --mark-size: calc(var(--cell-size) * 0.9); /* CSS function: calc() */
 
     /* Font sizes & boldness for different headings */
     --fnt-sz-main-header: 4rem;
     --fnt-sz-text-default: 1.6rem;
-    --fnt-sz-footer-text: 1rem;
+    --fnt-sz-footer-text: 1.2rem;
     --fnt-sz-scores-text: 2.5rem;
     --fnt-sz-settings-title: 2.5rem;
     --fnt-sz-result-text: 4rem;
@@ -60,9 +60,26 @@ body {
     color: var(--clr-text-default);
 }
 
+/*** START.html ***/
+#startPageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20vh;
+    font-size: var(--fnt-sz-main-header);
+}
+
+#startPageContainer button {
+    height: 5rem;
+    width: 18rem;
+}
+
 /*** BUTTONS ***/
 button {
     cursor: pointer;
+    font-size: var(--fnt-sz-text-default);
+    font-family: inherit;
 }
 
 body > .new-game-btn {
@@ -217,6 +234,7 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     position: absolute;
     left: 0;
     bottom: 0;
+    padding: 2rem;
     width: 100%;
     font-size: var(--fnt-sz-footer-text);
     color: var(--clr-footer-text);
