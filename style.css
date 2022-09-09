@@ -28,7 +28,7 @@
     
     /* Element sizes */
     font-size: 18px;
-    --cell-size: 20vh; 
+    --cell-size: 15vh; 
     --mark-size: calc(var(--cell-size) * 0.9); /* CSS function: calc() */
 
     /* Font sizes & boldness for different headings */

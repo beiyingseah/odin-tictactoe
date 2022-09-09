@@ -11,23 +11,66 @@ const WINNING_COMBINATIONS = [
     [2,5,8],
     [0,4,8],
     [2,4,6]
-]
+];
+// initialise scoreboard
+const SCOREBOARD = {};
+SCOREBOARD[X_CLASS] = 0;
+SCOREBOARD[CIRCLE_CLASS] = 0;
 
 // Globa l boolean variables
 // Player turn? X or O? 1 or 0?
 let circleTurn;
-let playerFirstMove;
 
 // Get display elements
 const cellElements = document.querySelectorAll('[data-cell]');
 const board = document.getElementById('board');
 const modal = document.getElementById('modalResult');
 const resultMessage = document.getElementById('resultMessage');
+const xScore = document.getElementById('xScore');
+const circleScore = document.getElementById('circleScore');
+const newGameBtnCollection = document.getElementsByClassName('new-game-btn');
+const playAgainBtn = document.getElementById('playAgainBtn');
 
+
+// Add event listeners
+for (newGameBtn of newGameBtnCollection) {
+    newGameBtn.onclick = () => newGame();
+}
+playAgainBtn.onclick = () => {
+    console.log("playAgainBtn clicked");
+    closeModal();
+    clearGameboard();
+    startGame();
+}
 
 // Game logic
+function newGame() {
+    console.log('clearboard');
+    clearGameboard();
+    console.log('clearScoreboard');
+    clearScoreboard();
+    console.log('Directed to setup.html');
+}
+
+function clearGameboard() {
+    board.classList.remove(X_CLASS);
+    board.classList.remove(CIRCLE_CLASS);
+    cellElements.forEach(cell => {
+        cell.classList.remove(X_CLASS);
+        cell.classList.remove(CIRCLE_CLASS);
+    });
+}
+
+function updateScoreboard() {
+    xScore.textContent = SCOREBOARD[X_CLASS];
+    circleScore.textContent = SCOREBOARD[CIRCLE_CLASS];
+} 
+
+function clearScoreboard() {
+}
+
 function startGame() {
-    playerFirstMove = !playerFirstMove;
+    playerFirstMove = !circleTurn;
     circleTurn = playerFirstMove;
     console.log(`startGame, player first move is: ${playerFirstMove}`);
     cellElements.forEach(cell => {
@@ -45,6 +88,8 @@ function handleClick(e) { //so many logic that go into a click! :o
     if (checkWin(currentClass)) {
         console.log('winner');
         endGame(false);
+        SCOREBOARD[currentClass]++;
+        updateScoreboard();
     }
     else if (checkDraw()) {
         console.log('draw')
