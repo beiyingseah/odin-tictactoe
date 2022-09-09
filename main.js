@@ -20,6 +20,10 @@ const SCOREBOARD = {};
 let circleTurn;
 
 // Get display elements
+// index.html
+const enterGameBtn = document.getElementById('enterGameBtn');
+
+// gameboard.html
 const cellElements = document.querySelectorAll('[data-cell]');
 const board = document.getElementById('board');
 const modal = document.getElementById('modalResult');
@@ -31,6 +35,12 @@ const playAgainBtn = document.getElementById('playAgainBtn');
 
 
 // Add event listeners
+// index.html
+enterGameBtn.onclick = () => {
+    window.location='pages/setup.html';
+}
+
+//gameboard.html
 for (newGameBtn of newGameBtnCollection) {
     newGameBtn.onclick = () => newGame();
 }
@@ -49,7 +59,7 @@ function newGame() {
     console.log('clearScoreboard');
     resetScoreboard();
     console.log('Directed to setup.html');
-    window.location='/index.html';
+    window.location='index.html';
 }
 
 function clearGameboard() {
