@@ -18,23 +18,57 @@ const SCOREBOARD = {};
 // Globa l boolean variables
 // Player turn? X or O? 1 or 0?
 let circleTurn;
+let player1Name = "";
+let player2Name = "";
 
 // Get display elements
 // index.html
 const enterGameBtn = document.getElementById('enterGameBtn');
 
+// setup.html
+const form = document.getElementById('playerForm');
+const p1NameField = form.elements.p1Name;
+const p2NameField = form.elements.p2Name;
+
+let p1NameValue = p1NameField.value;
+let p2NameValue = p2NameField.value;
+
+
 // gameboard.html
-const cellElements = document.querySelectorAll('[data-cell]');
+const cellElement = document.querySelectorAll('[data-cell]');
 const board = document.getElementById('board');
 const modal = document.getElementById('modalResult');
 const resultMessage = document.getElementById('resultMessage');
+const p1Name = document.getElementById('p1Name');
+const p2Name = document.getElementById('p2Name');
 const xScore = document.getElementById('xScore');
 const circleScore = document.getElementById('circleScore');
 const newGameBtnCollection = document.getElementsByClassName('new-game-btn');
 const playAgainBtn = document.getElementById('playAgainBtn');
-
+const startGameBtn = document.getElementById('startGameBtn');
 
 // Add event listeners
+// setup.html
+p1NameField.oninput = (e) => {
+    p1NameValue = e.target.value;
+    player1Name = p1NameValue;
+}
+
+p2NameField.oninput = (e) => {
+    p2NameValue = e.target.value;
+    player1Name = p1NameValue;
+}
+
+// For submit button
+form.onsubmit = (e) => {
+    console.log('submit form');
+    e.preventDefault();
+    window.location='gameboard.html';
+    renderScoreboard(p1NameValue, p2NameValue);
+    console.log('renderScoreboard');
+    startGame();
+}
+
 // index.html
 enterGameBtn.onclick = () => {
     window.location='pages/setup.html';
@@ -51,6 +85,9 @@ playAgainBtn.onclick = () => {
     clearGameboard();
     startGame();
 }
+
+
+//TODO:FIGURE OUT WHY FORM UPON 'ONSUBMIT' NAVIGATES TO A NEW URL WITH THE PLAYER NAMES INSTEAD OF GAMEBOARD.HTML. CODE IS THE SAME AS ODIN-LIBRARY FORM?? onclick for startgameBtn -> startGame(), gameboard.html, update textContent of Scoreboard
 
 // Game logic
 function newGame() {
@@ -69,6 +106,13 @@ function clearGameboard() {
         cell.classList.remove(X_CLASS);
         cell.classList.remove(CIRCLE_CLASS);
     });
+}
+
+function renderScoreboard(player1Name, player2Name) {
+    p1Name.textContent = player1Name + "[X]";
+    p2Name.textContent = player2Name + "[O]";
+    xScore.textContent = SCOREBOARD[X_CLASS];
+    circleScore.textContent = SCOREBOARD[CIRCLE_CLASS];
 }
 
 function updateScoreboard() {
