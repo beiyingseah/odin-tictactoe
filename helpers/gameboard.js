@@ -5,19 +5,19 @@ const newGameBtn = document.getElementsByClassName('new-game-btn')[0];
 newGameBtn.onclick = () => gameboardDisplayController.newGame();
 
 // Modules
-const gameboard = (() => {
+export const gameboard = (() => {
     const cellElements = document.querySelectorAll('[data-cell]');
     const board = document.getElementById('board');
 
-    const p1Name = document.getElementById('p1Name').textContent;
-    const p2Name = document.getElementById('p2Name').textContent;
-    const xScore = document.getElementById('xScore').textContent;
-    const circleScore = document.getElementById('circleScore');
+    const p1NameElement = document.getElementById('p1Name');
+    const p2NameElement = document.getElementById('p2Name');
+    const xScoreElement = document.getElementById('xScore');
+    const circleScoreElement = document.getElementById('circleScore');
     
-    return {cellElements, board, p1Name, p2Name, xScore, circleScore};
+    return {cellElements, board, p1NameElement, p2NameElement, xScoreElement, circleScoreElement};
 })();
 
-const gameboardDisplayController = (() => {
+export const gameboardDisplayController = (() => {
     // "Global" constants closed within this function
     const X_CLASS = 'x';
     const CIRCLE_CLASS = 'circle';
@@ -57,12 +57,12 @@ const gameboardDisplayController = (() => {
     
     const endGame = (draw) => {
     if (draw) {
-        modalDisplayController.resultMessage.textContent = `It's a draw!`
-        openModal();
+        modalDisplayController.resultMessage = `It's a draw!`
+        modalDisplayController.openModal();
 
     } else {
-        modalDisplayController.resultMessage.textContent = `${circleTurn ? 'O' : 'X'} wins this round!`
-        openModal();
+        modalDisplayController.resultMessage = `${circleTurn ? 'O' : 'X'} wins this round!`
+        modalDisplayController.openModal();
         }      
     };
 
@@ -120,27 +120,27 @@ const gameboardDisplayController = (() => {
         });
     }
     
-    //TODO: renderScoreboard to pass in player's names from player object instances created in setup.html, player object instance named as 'player1', 'player2', e.g. player1Name -> player1.name, player2Score -> player2.score
     const renderScoreboard = (player1Name, player2Name, player1Score, player2Score) => {
-        gameboard.p1Name = player1Name + "[X]";
-        gameboard.p2Name = player2Name + "[O]";
-        gameboard.xScore = player1Score;
-        gameboard.circleScore = player2Score;
+        console.log('renderScoreboard');
+        gameboard.p1NameElement.textContent = player1Name + " [X]";
+        gameboard.p2NameElement.textContent = player2Name + " [O]";
+        gameboard.xScoreElement.textContent = player1Score;
+        gameboard.circleScoreElement.textContent = player2Score;
     }
     
     //TODO; to pass in player1.score, player2.score from player object instances created in setup.html
     const updateScoreboard = (player1Score, player2Score) => {
         // Player 1 is X, player 2 is O
         // Mapping: Player 1 Name <> X symbol, when X wins, player's score increases, scoreboard renders accordingly to reflect the score.
-        gameboard.xScore = player1Score;
-        gameboard.circleScore = player2Score;
+        gameboard.xScoreElement.textContent = player1Score;
+        gameboard.circleScoreElement.textContent = player2Score;
     } 
     
     const resetScoreboard = () => {
-        gameboard.p1Name = "";
-        gameboard.p2Name = "";
-        gameboard.xScore = 0;
-        gameboard.circleScore = 0;
+        gameboard.p1NameElement.textContent = "";
+        gameboard.p2NameElement.textContent = "";
+        gameboard.xScoreElement.textContent = 0;
+        gameboard.circleScoreElement.textContent = 0;
     }
 
     const startGame = () => {
@@ -165,17 +165,17 @@ const gameboardDisplayController = (() => {
     return {startGame, newGame, resetScoreboard, renderScoreboard};
 })();
 
-const modalDisplayController = (() => {
+export const modalDisplayController = (() => {
     const modal = document.getElementById('modalResult');
-    const resultMessage = document.getElementById('resultMessage');
+    const resultMessage = document.getElementById('resultMessage').textContent;
     const newGameBtn = document.getElementsByClassName('new-game-btn')[1];
     const playAgainBtn = document.getElementById('playAgainBtn');
 
-    openModal = () => {
+    const openModal = () => {
         modal.style.display = 'flex';
     };
     
-    closeModal = () => {
+    const closeModal = () => {
         modal.style.display = 'none';
     };
 
@@ -186,9 +186,9 @@ const modalDisplayController = (() => {
         console.log("clear gameboard");
         gameboardDisplayController.startGame();
         console.log("another round!");
-    }
+    };
 
     newGameBtn.onclick = () => newGame();
 
-    return {resultMessage};
+    return {resultMessage, openModal};
 })();

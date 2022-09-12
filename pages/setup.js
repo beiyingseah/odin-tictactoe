@@ -9,12 +9,12 @@ let p2NameValue = p2NameField.value;
 // Add event listeners
 p1NameField.oninput = (e) => {
     p1NameValue = e.target.value;
-    player1.name = p1NameValue;
+    localStorage.setItem('p1Name', p1NameValue);
 }
 
 p2NameField.oninput = (e) => {
     p2NameValue = e.target.value;
-    player2.name = p2NameValue;
+    localStorage.setItem('p2Name', p2NameValue);
 }
 
 // For submit button
