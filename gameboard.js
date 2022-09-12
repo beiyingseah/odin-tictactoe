@@ -21,9 +21,6 @@ const gameboardDisplayController = (() => {
     // "Global" constants closed within this function
     const X_CLASS = 'x';
     const CIRCLE_CLASS = 'circle';
-    
-    // initialise scoreboard
-    const SCOREBOARD = {};
 
     // game logic
     const WINNING_COMBINATIONS = [
@@ -95,8 +92,13 @@ const gameboardDisplayController = (() => {
         if (checkWin(currentClass)) {
             console.log('winner');
             endGame(false);
-            SCOREBOARD[currentClass]++;
-            updateScoreboard();
+            if (currentClass === player1.symbol) {
+                player1.addScore;
+                updateScoreboard();
+            } else {
+                player2.addScore;
+                updateScoreboard();
+            }
         }
         else if (checkDraw()) {
             console.log('draw')
@@ -118,23 +120,27 @@ const gameboardDisplayController = (() => {
         });
     }
     
-    const renderScoreboard = (player1Name, player2Name) => {
-        p1Name = player1Name + "[X]";
-        p2Name = player2Name + "[O]";
-        xScore = SCOREBOARD[X_CLASS];
-        circleScore = SCOREBOARD[CIRCLE_CLASS];
+    //TODO: renderScoreboard to pass in player's names from player object instances created in setup.html, player object instance named as 'player1', 'player2', e.g. player1Name -> player1.name, player2Score -> player2.score
+    const renderScoreboard = (player1Name, player2Name, player1Score, player2Score) => {
+        gameboard.p1Name = player1Name + "[X]";
+        gameboard.p2Name = player2Name + "[O]";
+        gameboard.xScore = player1Score;
+        gameboard.circleScore = player2Score;
     }
     
-    const updateScoreboard = () => {
-        xScore.textContent = SCOREBOARD[X_CLASS];
-        circleScore.textContent = SCOREBOARD[CIRCLE_CLASS];
+    //TODO; to pass in player1.score, player2.score from player object instances created in setup.html
+    const updateScoreboard = (player1Score, player2Score) => {
+        // Player 1 is X, player 2 is O
+        // Mapping: Player 1 Name <> X symbol, when X wins, player's score increases, scoreboard renders accordingly to reflect the score.
+        gameboard.xScore = player1Score;
+        gameboard.circleScore = player2Score;
     } 
     
     const resetScoreboard = () => {
-        p1Name = "";
-        p2Name = "";
-        SCOREBOARD[X_CLASS] = 0;
-        SCOREBOARD[CIRCLE_CLASS] = 0;
+        gameboard.p1Name = "";
+        gameboard.p2Name = "";
+        gameboard.xScore = 0;
+        gameboard.circleScore = 0;
     }
 
     const startGame = () => {
