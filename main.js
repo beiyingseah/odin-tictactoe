@@ -15,23 +15,10 @@ const WINNING_COMBINATIONS = [
 // initialise scoreboard
 const SCOREBOARD = {};
 
-// Globa l boolean variables
-// Player turn? X or O? 1 or 0?
+// Globa l variables
 let circleTurn;
 let player1Name = "";
 let player2Name = "";
-
-// Get display elements
-// index.html
-const enterGameBtn = document.getElementById('enterGameBtn');
-
-// setup.html
-const form = document.getElementById('playerForm');
-const p1NameField = form.elements.p1Name;
-const p2NameField = form.elements.p2Name;
-
-let p1NameValue = p1NameField.value;
-let p2NameValue = p2NameField.value;
 
 
 // gameboard.html
@@ -47,43 +34,10 @@ const newGameBtnCollection = document.getElementsByClassName('new-game-btn');
 const playAgainBtn = document.getElementById('playAgainBtn');
 const startGameBtn = document.getElementById('startGameBtn');
 
-// Add event listeners
-// setup.html
-p1NameField.oninput = (e) => {
-    p1NameValue = e.target.value;
-    player1Name = p1NameValue;
-}
-
-p2NameField.oninput = (e) => {
-    p2NameValue = e.target.value;
-    player1Name = p1NameValue;
-}
-
-// For submit button
-form.onsubmit = (e) => {
-    console.log('submit form');
-    e.preventDefault();
-    window.location='gameboard.html';
-    renderScoreboard(p1NameValue, p2NameValue);
-    console.log('renderScoreboard');
-    startGame();
-}
-
-// index.html
-enterGameBtn.onclick = () => {
-    window.location='pages/setup.html';
-}
 
 //gameboard.html
 for (newGameBtn of newGameBtnCollection) {
     newGameBtn.onclick = () => newGame();
-}
-
-playAgainBtn.onclick = () => {
-    console.log("playAgainBtn clicked");
-    closeModal();
-    clearGameboard();
-    startGame();
 }
 
 
@@ -215,6 +169,13 @@ function closeModal() {
     modal.style.display = 'none';
 }
 
+// PlayAgainBtn
+playAgainBtn.onclick = () => {
+    console.log("playAgainBtn clicked");
+    closeModal();
+    clearGameboard();
+    startGame();
+}
 
 // Model layer
 function gameBoard() {
