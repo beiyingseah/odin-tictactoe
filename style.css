@@ -6,7 +6,7 @@
     --fnt-fm-default: 'Nunito Sans', sans-serif, Arial;
 
     /* Colour palette: font, cells, board */
-    --clr-green: #55EFC4;
+    --clr-green: #2a9d8f;
     --clr-white: #fdfffc;
     --clr-dark-grey: #6c757d;
     --clr-medium-grey: #adb5bd;
@@ -282,6 +282,10 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
     background-color: var(--clr-light-grey);
 }
 
+.cell.circle.win::after {
+    background-color: var(--clr-green);
+}
+
 /*** MODAL ***/ 
 .modal {
     position: fixed;
@@ -297,14 +301,15 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
 }
 
 .modal-content {
+    height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    margin: 10% auto;
-    max-width: fit-content;
+    row-gap: 2rem;
+    margin: auto;
     animation-name: modalopen;
-    animation-duration: 0.3s;
+    animation-duration: 0.5s;
     border-radius: 10px;
 }
 
@@ -315,7 +320,9 @@ With the text approach, you'd have to worry about font sizes and the symbols wil
 }
 
 .modal-content button {
-    max-width: 100%;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @keyframes modalopen{
