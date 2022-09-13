@@ -12,6 +12,10 @@ export const gameboard = (() => {
 })();
 
 export const gameboardDisplayController = (() => {
+    // Initialise players
+    let player1;
+    let player2;
+
     // "Global" constants closed within this function
     const X_CLASS = 'x';
     const CIRCLE_CLASS = 'circle';
@@ -36,9 +40,11 @@ export const gameboardDisplayController = (() => {
 
     // Gameboard Display
     const setBoardHoverClass = (circleTurn) => {
+        console.log(`player1: ${player1}`);
+        console.log(`player2: ${player2}`);
         console.log('SET BOARD HOVER CLASS');
-        console.log(`circle turn is ${gameboardState.circleTurn}`);
-        console.log(`gameboard.board.classList is ${gameboard.board.classList}`);
+        console.log(`circle turn is ${circleTurn}`);
+        console.log(`gameboard.board.classList is ${circleTurn}`);
         gameboard.board.classList.remove(X_CLASS);
         gameboard.board.classList.remove(CIRCLE_CLASS);
         if (gameboardState.circleTurn) {
@@ -57,8 +63,8 @@ export const gameboardDisplayController = (() => {
 
     const swapTurns = (circleTurn) => {
         console.log('SWAP TURNS');
-        gameboardState.circleTurn = !gameboardState.circleTurn;
-        console.log(`circle turn is ${gameboardState.circleTurn}`);
+        gameboardState.circleTurn = !circleTurn;
+        console.log(`circle turn is ${circleTurn}`);
 }
 
     // Results
@@ -71,20 +77,20 @@ export const gameboardDisplayController = (() => {
         };
         
         const checkDraw = () => {
-        return [...gameboard.cellElements].every(cell => {
-            return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS);
-            });
+            return [...gameboard.cellElements].every(cell => {
+                return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS);
+                });
         };
         
-        const endGame = (draw, p1Name, p2Name) => { //with 'draw' being a boolean, true or false
-        if (draw) {
-            modalDisplayController.resultMessage = `It's a draw!`
-            modalDisplayController.openModal();
-    
-        } else {
-            modalDisplayController.resultMessage = `${gameboardState.circleTurn ? `${p2Name}` : `${p1Name}`} wins this round!`
-            modalDisplayController.openModal();
-            }      
+        const endGame = (draw, p1Name, p2Name, circleTurn) => { //with 'draw' being a boolean, true or false
+            if (draw) {
+                modalDisplayController.resultMessageElement.textContent = `It's a draw!`
+                modalDisplayController.openModal();
+        
+            } else {
+                modalDisplayController.resultMessageElement.textContent = `${circleTurn ? `${p2Name}` : `${p1Name}`} wins this round!`
+                modalDisplayController.openModal();
+                }      
         };
         
     // So much logic that goes into a click! :o
@@ -97,7 +103,7 @@ export const gameboardDisplayController = (() => {
         placeMark(cell, currentClass);
         // Check for Win
         if (checkWin(currentClass)) {
-            endGame(false, player1.name, player2.name);
+            endGame(false, player1.name, player2.name, gameboardState.circleTurn);
             console.log('A PLAYER WINS!');
             if (currentClass === player1.symbol) {
                 player1.addScore;
@@ -110,11 +116,11 @@ export const gameboardDisplayController = (() => {
         }
         else if (checkDraw()) {
             console.log('DRAW!')
-            endGame(true);
+            endGame(true, null, null, gameboardState.circleTurn);
     
         } else {
             swapTurns(gameboardState.circleTurn); 
-            setBoardHoverClass();
+            setBoardHoverClass(gameboardState.circleTurn);
         }
     } 
 
@@ -137,6 +143,7 @@ export const gameboardDisplayController = (() => {
     
     //TODO; to pass in player1.score, player2.score from player object instances created in setup.html
     const updateScoreboard = (p1Score, p2Score) => {
+        console.log(p1Score, p2Score);
         // Player 1 is X, player 2 is O
         // Mapping: Player 1 Name <> X symbol, when X wins, player's score increases, scoreboard renders accordingly to reflect the score.
         gameboard.xScoreElement.textContent = p1Score;
@@ -151,6 +158,8 @@ export const gameboardDisplayController = (() => {
     }
 
     const startGame = (player1Obj, player2Obj) => {
+        player1 = player1Obj;
+        player2 = player2Obj;
         console.log('START GAME');
         console.log(`circle turn is ${gameboardState.circleTurn}`);
         let playerFirstMove = !gameboardState.circleTurn;
@@ -168,9 +177,6 @@ export const gameboardDisplayController = (() => {
         clearGameboard();
         console.log('clearScoreboard');
         resetScoreboard();
-        console.log('Directed to setup.html');
-        window.location='index.html';
-        setBoardHoverClass();
     };
 
     return {startGame, newGame, resetScoreboard, renderScoreboard};
@@ -178,7 +184,7 @@ export const gameboardDisplayController = (() => {
 
 export const modalDisplayController = (() => {
     const modal = document.getElementById('modalResult');
-    const resultMessage = document.getElementById('resultMessage').textContent;
+    const resultMessageElement = document.getElementById('resultMessage');
     const newGameBtn = document.getElementsByClassName('new-game-btn')[1];
     const playAgainBtn = document.getElementById('playAgainBtn');
 
@@ -190,16 +196,5 @@ export const modalDisplayController = (() => {
         modal.style.display = 'none';
     };
 
-    playAgainBtn.onclick = () => {
-        console.log("playAgainBtn clicked");
-        closeModal();
-        gameboardDisplayController.clearGameboard();
-        console.log("clear gameboard");
-        gameboardDisplayController.startGame();
-        console.log("another round!");
-    };
-
-    newGameBtn.onclick = () => newGame();
-
-    return {resultMessage, openModal};
+    return {resultMessageElement, openModal, newGameBtn, playAgainBtn, closeModal};
 })();
