@@ -24,9 +24,8 @@
 
 
 ## EXTRA CREDITS
-- This is the first project where I also most consciously implement the [MVC architectural pattern](https://medium.com/@aaron.rory.newbold/adopting-the-model-view-controller-mvc-architectural-pattern-in-javascript-3dc0519d57aa)
-- Refactor code based on code review (:
-- Experiment with a 'neumorphic' design 
+- The first project where I conciously try to implement the [MVC architectural pattern](https://medium.com/@aaron.rory.newbold/adopting-the-model-view-controller-mvc-architectural-pattern-in-javascript-3dc0519d57aa)
+- Experimented with a 'neumorphic' design 
 
 
 ## FUTURE VERSIONS
