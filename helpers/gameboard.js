@@ -38,27 +38,7 @@ export const gameboardDisplayController = (() => {
         return {circleTurn};
     })(); 
 
-    // Gameboard Display
-    const setBoardHoverClass = (circleTurn) => {
-        console.log('SET BOARD HOVER CLASS');
-        console.log(`PLAYER 1:`);
-        console.log(player1);
-        console.log(`PLAYER 2:`);
-        console.log(player2);
-        console.log(`circle turn is ${circleTurn}`);
-        console.log(`gameboard.board.classList is ${circleTurn}`);
-        gameboard.board.classList.remove(X_CLASS);
-        gameboard.board.classList.remove(CIRCLE_CLASS);
-        if (gameboardState.circleTurn) {
-            console.log(`gameboardState.circleTurn = true, add circle_class, ${CIRCLE_CLASS}`);
-            gameboard.board.classList.add(CIRCLE_CLASS);
-        } else {
-            console.log(`xTurn = true, add x_class, ${X_CLASS}`);
-            gameboard.board.classList.add(X_CLASS);
-        }
-        console.log(`Board hover class: ${gameboard.board.classList}`);
-    };  
-
+    // GAMEBOARD LOGIC
     const placeMark = (cell, currentClass) => {
         cell.classList.add(currentClass);
     }
@@ -105,7 +85,10 @@ export const gameboardDisplayController = (() => {
         placeMark(cell, currentClass);
         // Check for Win
         if (checkWin(currentClass)) {
-            endGame(false, player1.name, player2.name, gameboardState.circleTurn);
+            highlightWinningCells(currentClass);
+            setTimeout( function () {
+                endGame(false, player1.name, player2.name, gameboardState.circleTurn)
+            }, 5000);
             console.log('A PLAYER WINS!');
             if (currentClass === player1.symbol) {
                 player1.addScore();
@@ -119,13 +102,35 @@ export const gameboardDisplayController = (() => {
         }
         else if (checkDraw()) {
             console.log('DRAW!')
-            endGame(true, null, null, gameboardState.circleTurn);
+            setTimeout(endGame(true, null, null, gameboardState.circleTurn), 5000);
     
         } else {
             swapTurns(gameboardState.circleTurn); 
             setBoardHoverClass(gameboardState.circleTurn);
         }
     } 
+
+    // GAMEBOARD DISPLAY
+    const setBoardHoverClass = (circleTurn) => {
+        console.log('SET BOARD HOVER CLASS');
+        console.log(`PLAYER 1:`);
+        console.log(player1);
+        console.log(`PLAYER 2:`);
+        console.log(player2);
+        console.log(`circle turn is ${circleTurn}`);
+        console.log(`gameboard.board.classList is ${circleTurn}`);
+        gameboard.board.classList.remove(X_CLASS);
+        gameboard.board.classList.remove(CIRCLE_CLASS);
+        if (gameboardState.circleTurn) {
+            console.log(`gameboardState.circleTurn = true, add circle_class, ${CIRCLE_CLASS}`);
+            gameboard.board.classList.add(CIRCLE_CLASS);
+        } else {
+            console.log(`xTurn = true, add x_class, ${X_CLASS}`);
+            gameboard.board.classList.add(X_CLASS);
+        }
+        console.log(`Board hover class: ${gameboard.board.classList}`);
+    };  
+
 
     const clearGameboard = () => {
         console.log('CLEAR GAMEBOARD');
@@ -145,6 +150,13 @@ export const gameboardDisplayController = (() => {
         gameboard.xScoreElement.textContent = p1Score;
         gameboard.circleScoreElement.textContent = p2Score;
     }
+
+    const highlightWinningCells = (currentClass) => {
+        let winningCells = WINNING_COMBINATIONS.find((combination) =>
+        combination.every((index) => gameboard.cellElements[index].classList.contains(currentClass)))
+        winningCells.forEach((index) => gameboard.cellElements[index].classList.add('win'));
+      };
+
     
     //TODO; to pass in player1.score, player2.score from player object instances created in setup.html
     const updateScoreboard = (p1Score, p2Score) => {

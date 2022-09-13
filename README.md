@@ -27,7 +27,11 @@
 - This is the first project where I also most consciously implement the [MVC architectural pattern](https://medium.com/@aaron.rory.newbold/adopting-the-model-view-controller-mvc-architectural-pattern-in-javascript-3dc0519d57aa)
 - Refactor code based on code review (:
 - Experiment with a 'neumorphic' design 
-- Create an AI where players can play against the computer
+
+
+## FUTURE VERSIONS
+- Enable [AI-mode](https://www.freecodecamp.org/news/how-to-make-your-tic-tac-toe-game-unbeatable-by-using-the-minimax-algorithm-9d690bad4b37/) where players can play against the computer
+
 
 ## REFERENCES
 #### Assets

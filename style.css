@@ -32,7 +32,7 @@
     
     /* Element sizes */
     font-size: 16px;
-    --cell-size: 18vh; 
+    --cell-size: 16vh; 
     --mark-size: calc(var(--cell-size) * 0.9); /* CSS function: calc() */
 
     /* Font sizes & boldness for different headings */
@@ -180,8 +180,6 @@ body > .new-game-btn {
 }
 
 
-
-
 /*** GAMEBOARD ***/
 .board { 
     display: grid;
@@ -198,7 +196,6 @@ body > .new-game-btn {
 .cell {
     width: var(--cell-size);
     height: var(--cell-size);
-    border: 1px solid black;
     background-color: var(--neu-bg-up);
     box-shadow: var(--neu-shadow-down);
     border: none;
@@ -209,6 +206,10 @@ body > .new-game-btn {
     position: relative;
     cursor: pointer;
 } 
+
+.cell.win {
+    background-color: var(--clr-green);
+}
 
 /** SYMBOLS/MARKERS **/
 /* Markers are designed purely in CSS as opposed to text in HTML. 
