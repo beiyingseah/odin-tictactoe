@@ -34,9 +34,9 @@
 
 ## REFERENCES
 #### Assets
-[Icons]
+- ##### Icons
  https://www.flaticon.com/free-icons/library
-[Neumorphic UI design & colour palette :D]
+- ##### Neumorphic UI design & colour palette :D
 https://neumorphism.io/#e0e0e0
 https://themesberg.com/docs/neumorphism-ui/foundation/typography/
 https://redstapler.co/css-neumorphic-login-form-design/
