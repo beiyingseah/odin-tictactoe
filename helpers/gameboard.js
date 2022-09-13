@@ -40,9 +40,11 @@ export const gameboardDisplayController = (() => {
 
     // Gameboard Display
     const setBoardHoverClass = (circleTurn) => {
-        console.log(`player1: ${player1}`);
-        console.log(`player2: ${player2}`);
         console.log('SET BOARD HOVER CLASS');
+        console.log(`PLAYER 1:`);
+        console.log(player1);
+        console.log(`PLAYER 2:`);
+        console.log(player2);
         console.log(`circle turn is ${circleTurn}`);
         console.log(`gameboard.board.classList is ${circleTurn}`);
         gameboard.board.classList.remove(X_CLASS);
@@ -106,12 +108,13 @@ export const gameboardDisplayController = (() => {
             endGame(false, player1.name, player2.name, gameboardState.circleTurn);
             console.log('A PLAYER WINS!');
             if (currentClass === player1.symbol) {
-                player1.addScore;
+                player1.addScore();
                 console.log(player1);
             } else {
-                player2.addScore;
+                player2.addScore();
                 console.log(player2);
             }
+            console.log(`player 1 score: ${player1.score}, player 2 score: ${player2.score}`);
             updateScoreboard(player1.score, player2.score);
         }
         else if (checkDraw()) {
@@ -125,12 +128,14 @@ export const gameboardDisplayController = (() => {
     } 
 
     const clearGameboard = () => {
+        console.log('CLEAR GAMEBOARD');
         gameboard.board.classList.remove(X_CLASS);
         gameboard.board.classList.remove(CIRCLE_CLASS);
         gameboard.cellElements.forEach(cell => {
             cell.classList.remove(X_CLASS);
             cell.classList.remove(CIRCLE_CLASS);
         });
+        console.log('player1name', player1.name);
     }
     
     const renderScoreboard = (p1Name, p2Name, p1Score, p2Score) => {
@@ -179,7 +184,7 @@ export const gameboardDisplayController = (() => {
         resetScoreboard();
     };
 
-    return {startGame, newGame, resetScoreboard, renderScoreboard};
+    return {startGame, newGame, resetScoreboard, renderScoreboard, clearGameboard};
 })();
 
 export const modalDisplayController = (() => {

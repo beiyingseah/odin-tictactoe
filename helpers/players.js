@@ -1,12 +1,12 @@
 // factory function for players
 
-const Player = (name, symbol) => {
+function Player(name, symbol) {
     let score = 0; //modified accordingly based on game results  
 
-    const addScore = () => {
-        score++;
-    }
-
+    function addScore() {
+        this.score++;
+        console.log(`player score added, new score: ${this.score}`);
+    };
     return {name, symbol, score, addScore};
 };
 

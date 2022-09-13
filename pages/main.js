@@ -13,6 +13,7 @@ console.log(player2);
 gameboardDisplayController.renderScoreboard(player1.name, player2.name, player1.score, player2.score);
 gameboardDisplayController.startGame(player1, player2);
 
+
 // Rest of the page elements controlled directly by user
 const newGameBtn = document.getElementsByClassName('new-game-btn')[0];
 
@@ -33,8 +34,8 @@ modalDisplayController.playAgainBtn.onclick = () => {
     modalDisplayController.closeModal();
     gameboardDisplayController.clearGameboard();
     console.log("clear gameboard");
-    gameboardDisplayController.startGame();
-    console.log("another round!");
+    gameboardDisplayController.startGame(player1, player2);
+    console.log("ANOTHER ROUND!");
 };
 
 
