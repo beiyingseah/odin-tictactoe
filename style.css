@@ -172,11 +172,34 @@ body > .new-game-btn {
 }
 
 /*** SCOREBOARD ***/
+.main-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    width: fit-content;
+    margin: auto;
+    justify-content: center;
+}
+
 .scoreBoard {
     display: flex;
-    justify-content: center;
-    column-gap: 50px;
-    margin-bottom: 50px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--fnt-sz-scores-text);
+}
+
+#p1scoreBoard, 
+#p2scoreBoard {
+    font-size: var(--fnt-sz-scores-text);
+    font-weight: var(--fnt-wt-700);
+    color: var(--clr-text-default);
+}
+
+#xScore, 
+#circleScore {
+    margin: 1rem;
+    padding: 0.5rem 1.5rem;
+    box-shadow: var(--neu-shadow-default);
 }
 
 

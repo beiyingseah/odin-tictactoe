@@ -147,8 +147,8 @@ export const gameboardDisplayController = (() => {
     
     const renderScoreboard = (p1Name, p2Name, p1Score, p2Score) => {
         console.log('renderScoreboard');
-        gameboard.p1NameElement.textContent = p1Name + " [X]";
-        gameboard.p2NameElement.textContent = p2Name + " [O]";
+        gameboard.p1NameElement.textContent = p1Name;
+        gameboard.p2NameElement.textContent = p2Name;
         gameboard.xScoreElement.textContent = p1Score;
         gameboard.circleScoreElement.textContent = p2Score;
     }
