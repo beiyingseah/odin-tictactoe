@@ -88,7 +88,7 @@ export const gameboardDisplayController = (() => {
             highlightWinningCells(currentClass);
             setTimeout( function () {
                 endGame(false, player1.name, player2.name, gameboardState.circleTurn)
-            }, 500);
+            }, 400);
             console.log('A PLAYER WINS!');
             if (currentClass === player1.symbol) {
                 player1.addScore();
@@ -104,7 +104,7 @@ export const gameboardDisplayController = (() => {
             console.log('DRAW!')
             setTimeout( function () {
                 endGame(true, null, null, gameboardState.circleTurn)
-            }, 500);
+            }, 400);
     
         } else {
             swapTurns(gameboardState.circleTurn); 

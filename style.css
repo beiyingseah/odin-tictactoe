@@ -199,6 +199,7 @@ body > .new-game-btn {
 #circleScore {
     margin: 1rem;
     padding: 0.5rem 1.5rem;
+    border-radius: 15px;
     box-shadow: var(--neu-shadow-default);
 }
 
