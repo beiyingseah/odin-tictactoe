@@ -39,5 +39,4 @@ modalDisplayController.playAgainBtn.onclick = () => {
 };
 
 
-
 //renderScoreboard(p1NameValue, p2NameValue);
