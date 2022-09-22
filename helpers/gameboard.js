@@ -113,7 +113,7 @@ export const gameboardDisplayController = (() => {
     } 
 
     // GAMEBOARD DISPLAY
-    const setBoardHoverClass = (circleTurn) => {
+    const setBoardHoverClass = () => {
         console.log('SET BOARD HOVER CLASS');
         console.log(`PLAYER 1:`);
         console.log(player1);
